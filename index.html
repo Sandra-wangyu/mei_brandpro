@@ -132,7 +132,23 @@ footer{padding:3rem;max-width:1160px;margin:0 auto;display:flex;justify-content:
 </style>
 </head>
 <body>
+<script>
+  (function() {
+    const password = "0000"; // ← 改成你要的密碼
+    const entered = sessionStorage.getItem("auth");
+    if (entered !== password) {
+      const input = prompt("請輸入密碼 / パスワードを入力してください");
+      if (input !== password) {
+        document.body.innerHTML = "<h2 style='text-align:center;margin-top:20%;'>密碼錯誤，請重新整理</h2>";
+        return;
+      }
+      sessionStorage.setItem("auth", password);
+    }
+  })();
+</script>
 
+
+  
 <nav>
   <div class="nav-brand">品牌商品策略</div>
   <ul class="nav-items">
