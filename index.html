@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>早美品牌商品提案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1208;--paper:#f4efe4;--cream:#ede7d9;
+  --red:#c0392b;--blue:#1c3d5a;--gold:#b8903a;
+  --muted:#7a7060;--light:#e8e2d4;--white:#faf7f2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-serif;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(244,239,228,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,18,8,0.08);}
+.nav-brand{font-family:'Noto Serif TC',serif;font-weight:900;font-size:0.9rem;letter-spacing:0.2em;color:var(--blue);}
+.nav-items{display:flex;gap:2.5rem;list-style:none;}
+.nav-items a{font-size:0.72rem;letter-spacing:0.12em;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-items a:hover{color:var(--ink);}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(28,61,90,0.07) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(192,57,43,0.05) 0%,transparent 50%);}
+.hero-num{position:absolute;top:50%;right:2rem;transform:translateY(-50%);font-family:'Noto Serif TC',serif;font-size:22vw;font-weight:900;color:rgba(28,61,90,0.04);line-height:1;pointer-events:none;user-select:none;}
+.hero-tag{font-size:0.68rem;letter-spacing:0.3em;color:var(--red);opacity:0;animation:up 0.9s 0.1s forwards;margin-bottom:1.2rem;}
+.hero-title{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(2.8rem,6.5vw,5.5rem);line-height:1.1;opacity:0;animation:up 0.9s 0.3s forwards;}
+.hero-title em{font-style:normal;color:var(--red);}
+.hero-line{width:60px;height:2px;background:var(--gold);margin:2rem 0;opacity:0;animation:up 0.9s 0.5s forwards;}
+.hero-desc{font-size:0.95rem;color:var(--muted);line-height:1.9;max-width:460px;opacity:0;animation:up 0.9s 0.7s forwards;}
+.hero-meta{display:flex;gap:3rem;margin-top:3rem;opacity:0;animation:up 0.9s 0.9s forwards;}
+.meta{display:flex;flex-direction:column;gap:0.2rem;}
+.meta-l{font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);}
+.meta-v{font-size:0.85rem;font-weight:500;color:var(--blue);}
+.scroll-cue{position:absolute;bottom:2.5rem;left:3rem;display:flex;align-items:center;gap:0.75rem;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);opacity:0;animation:up 0.9s 1.3s forwards;}
+.scroll-bar{width:36px;height:1px;background:var(--muted);}
+
+.sec{padding:7rem 3rem;max-width:1160px;margin:0 auto;}
+.sec-tag{font-size:0.65rem;letter-spacing:0.3em;color:var(--red);margin-bottom:0.75rem;}
+.sec-h{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(1.9rem,3.2vw,2.9rem);line-height:1.2;margin-bottom:0.9rem;}
+.sec-sub{font-size:0.88rem;color:var(--muted);line-height:1.9;max-width:500px;margin-bottom:3rem;}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(26,18,8,0.12),transparent);}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity 0.65s,transform 0.65s;}
+.rv.on{opacity:1;transform:none;}
+
+/* 01 */
+.struct-wrap{background:var(--white);border:1px solid rgba(26,18,8,0.08);padding:2.5rem;box-shadow:4px 4px 0 rgba(26,18,8,0.05);}
+.struct-label{font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);margin-bottom:2rem;}
+.legend{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--muted);}
+.leg-line{width:22px;height:2px;}
+
+/* 02 */
+.concept-stage{background:var(--blue);color:white;padding:7rem 3rem;position:relative;overflow:hidden;}
+.concept-stage::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(192,57,43,0.15) 0%,transparent 55%);}
+.concept-inner{max-width:1160px;margin:0 auto;position:relative;}
+.concept-stage .sec-tag{color:var(--gold);}
+.concept-stage .sec-h{color:white;}
+.concept-stage .sec-sub{color:rgba(255,255,255,0.55);}
+
+.path-legend{display:flex;gap:2rem;margin-bottom:2rem;flex-wrap:wrap;}
+.pl-item{display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;}
+.pl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+.concept-svg-wrap{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:2rem;margin-bottom:2.5rem;}
+
+.limit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
+.limit-card{border:1px solid rgba(255,255,255,0.12);padding:1.5rem;background:rgba(255,255,255,0.04);transition:all 0.25s;}
+.limit-card:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.25);}
+.limit-num{font-family:'Noto Serif TC',serif;font-size:2.2rem;font-weight:900;color:rgba(255,255,255,0.2);line-height:1;margin-bottom:0.6rem;}
+.limit-title{font-size:0.88rem;font-weight:600;color:white;margin-bottom:0.4rem;}
+.limit-body{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.8;}
+.limit-stat{margin-top:0.75rem;font-size:0.75rem;color:var(--gold);font-weight:600;}
+.conclusion-bar{margin-top:2.5rem;padding:1.25rem 1.5rem;border-left:3px solid var(--gold);background:rgba(184,144,58,0.08);font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.8;}
+.conclusion-bar strong{color:var(--gold);}
+
+/* 03 */
+.vision-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.vision-label{font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);margin-bottom:0.75rem;}
+.vision-diagram{background:var(--white);border:1px solid rgba(26,18,8,0.08);padding:1.75rem;box-shadow:3px 3px 0 rgba(26,18,8,0.04);}
+.vtag{font-size:0.62rem;letter-spacing:0.15em;margin-bottom:1rem;}
+.insight-list{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem;}
+.insight-item{padding:1rem 1.25rem;border-left:2px solid transparent;transition:all 0.2s;cursor:default;}
+.insight-item:hover{border-left-color:var(--red);background:var(--white);}
+.insight-title{font-size:0.88rem;font-weight:600;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.5rem;}
+.insight-body{font-size:0.78rem;color:var(--muted);line-height:1.8;}
+.i-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+/* 04 */
+.cases-bg{background:var(--ink);padding:7rem 3rem;}
+.cases-inner{max-width:1160px;margin:0 auto;}
+.cases-bg .sec-tag{color:var(--gold);}
+.cases-bg .sec-h{color:white;}
+.cases-bg .sec-sub{color:rgba(255,255,255,0.45);}
+.cases-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;}
+.case-card{border:1px solid rgba(255,255,255,0.1);padding:2rem;transition:all 0.25s;cursor:default;}
+.case-card:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.25);transform:translateY(-3px);}
+.case-brand{font-family:'Noto Serif TC',serif;font-size:1.3rem;font-weight:900;color:white;margin-bottom:0.2rem;}
+.case-en{font-size:0.62rem;letter-spacing:0.15em;color:rgba(255,255,255,0.22);margin-bottom:0.9rem;}
+.case-kw{display:inline-block;font-size:0.65rem;letter-spacing:0.1em;padding:0.2rem 0.5rem;border:1px solid var(--gold);color:var(--gold);margin-bottom:0.75rem;}
+.case-body{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.9;}
+.reflection{padding:2rem 2.5rem;border:1px solid rgba(184,144,58,0.3);background:rgba(184,144,58,0.05);margin-bottom:0;}
+.reflection-q{font-size:0.68rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.75rem;}
+.reflection-text{font-size:1rem;color:white;line-height:1.9;font-weight:300;}
+.reflection-text strong{color:var(--gold);font-weight:600;}
+
+/* 05 — horizontal flow tree */
+.dir-flow{overflow-x:auto;padding-bottom:1rem;}
+.dir-flow svg{min-width:860px;width:100%;height:auto;}
+
+.placeholder-box{border:1.5px dashed rgba(26,18,8,0.2);padding:2.5rem 2rem;text-align:center;background:rgba(26,18,8,0.01);margin-top:2rem;}
+.ph-label{font-size:0.75rem;letter-spacing:0.15em;color:var(--muted);}
+.ph-sub{font-size:0.78rem;color:rgba(122,112,96,0.45);margin-top:0.4rem;}
+
+footer{padding:3rem;max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(26,18,8,0.08);}
+.ft-note{font-size:0.72rem;color:var(--muted);letter-spacing:0.05em;}
+.ft-status{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;color:var(--red);}
+.ft-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 1.6s infinite;}
+
+@keyframes up{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}.nav-items{display:none;}
+  .sec,.cases-bg,.concept-stage{padding:4rem 1.5rem;}
+  .vision-wrap,.cases-grid,.limit-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">品牌商品策略</div>
+  <ul class="nav-items">
+    <li><a href="#s01">現況結構</a></li>
+    <li><a href="#s02">原始概念</a></li>
+    <li><a href="#s03">擴大視角</a></li>
+    <li><a href="#s04">案例參考</a></li>
+    <li><a href="#s05">發展方向</a></li>
+    <li><a href="#s06">各階段</a></li>
+    <li><a href="#s07">毛利效益</a></li>
+    <li><a href="#s08">風險與結論</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-num">早美</div>
+  <p class="hero-tag">INTERNAL PROPOSAL · 2026.03</p>
+  <h1 class="hero-title">品牌商品<br><em>提案</em></h1>
+  <div class="hero-line"></div>
+  <p class="hero-desc">從現有經營結構出發，檢視原始概念的侷限，拉大視角思考品牌商品真正的價值。</p>
+  <div class="hero-meta">
+    <div class="meta"><span class="meta-l">受眾</span><span class="meta-v">Gavin</span></div>
+    <div class="meta"><span class="meta-l">版本</span><span class="meta-v">Ver.2提案</span></div>
+    <div class="meta"><span class="meta-l">狀態</span><span class="meta-v" style="color:var(--red)">持續討論中</span></div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-bar"></div>向下閱讀</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== 01 現況結構 ===== -->
+<section class="sec" id="s01">
+  <p class="sec-tag rv">01 — 現況</p>
+  <h2 class="sec-h rv">目前公司經營結構</h2>
+  <p class="sec-sub rv">總部向外延伸四條路徑；門市透過早餐成品到達消費者；品牌商品直接迴路回消費者端，消費者可直購或點數加購。</p>
+
+  <div class="struct-wrap rv">
+    <p class="struct-label">CURRENT STRUCTURE · 參照手稿</p>
+    <svg viewBox="0 0 760 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <marker id="a1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6Z" fill="#1c3d5a"/></marker>
+        <marker id="a2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6Z" fill="#c0392b"/></marker>
+      </defs>
+
+      <!-- 總部 -->
+      <rect x="300" y="12" width="110" height="38" fill="#1c3d5a" rx="1"/>
+      <text x="355" y="36" text-anchor="middle" fill="white" font-size="14" font-family="Noto Sans TC" font-weight="500">總部</text>
+
+      <!-- 總部 → 代工 -->
+      <line x1="305" y1="30" x2="95" y2="104" stroke="#1c3d5a" stroke-width="1.2" marker-end="url(#a1)"/>
+      <!-- 總部 → 美而美 -->
+      <line x1="330" y1="50" x2="220" y2="104" stroke="#1c3d5a" stroke-width="1.2" marker-end="url(#a1)"/>
+      <!-- 總部 → 門市 -->
+      <line x1="355" y1="50" x2="355" y2="104" stroke="#1c3d5a" stroke-width="1.2" marker-end="url(#a1)"/>
+
+      <!-- 代工 -->
+      <rect x="18" y="104" width="130" height="42" fill="var(--light,#e8e2d4)" stroke="rgba(26,18,8,0.15)" stroke-width="1" rx="1"/>
+      <text x="83" y="121" text-anchor="middle" fill="#1a1208" font-size="11" font-family="Noto Sans TC">代工</text>
+      <text x="83" y="137" text-anchor="middle" fill="#7a7060" font-size="9.5" font-family="Noto Sans TC">or其他封閉通路</text>
+
+      <!-- 美而美 + For B -->
+      <rect x="158" y="104" width="120" height="42" fill="var(--light,#e8e2d4)" stroke="rgba(26,18,8,0.15)" stroke-width="1" rx="1"/>
+      <text x="218" y="121" text-anchor="middle" fill="#1a1208" font-size="11" font-family="Noto Sans TC">美而美</text>
+      <text x="218" y="137" text-anchor="middle" fill="#7a7060" font-size="9.5" font-family="Noto Sans TC">For B</text>
+
+      <!-- 門市 -->
+      <rect x="308" y="104" width="96" height="42" fill="var(--light,#e8e2d4)" stroke="rgba(26,18,8,0.15)" stroke-width="1" rx="1"/>
+      <text x="356" y="130" text-anchor="middle" fill="#1a1208" font-size="13" font-family="Noto Sans TC" font-weight="500">門市</text>
+
+      <!-- 品牌商品 -->
+      <rect x="520" y="104" width="120" height="42" fill="#c0392b" rx="1"/>
+      <text x="580" y="130" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC" font-weight="600">品牌商品</text>
+
+      <!-- 門市 → 早餐成品 -->
+      <line x1="356" y1="146" x2="356" y2="196" stroke="#1c3d5a" stroke-width="1.2" marker-end="url(#a1)"/>
+      <!-- 早餐成品 -->
+      <rect x="308" y="196" width="96" height="38" fill="var(--light,#e8e2d4)" stroke="rgba(26,18,8,0.15)" stroke-width="1" rx="1"/>
+      <text x="356" y="219" text-anchor="middle" fill="#1a1208" font-size="11" font-family="Noto Sans TC">早餐成品</text>
+
+      <!-- 早餐成品 → 消費者 -->
+      <line x1="356" y1="234" x2="356" y2="272" stroke="#1c3d5a" stroke-width="1.2" marker-end="url(#a1)"/>
+
+      <!-- 消費者 -->
+      <rect x="286" y="272" width="140" height="40" fill="#1c3d5a" rx="1"/>
+      <text x="356" y="297" text-anchor="middle" fill="white" font-size="13" font-family="Noto Sans TC" font-weight="500">消費者</text>
+
+      <!-- 品牌商品 → 消費者 弧線 (red) -->
+      <path d="M580 146 Q660 292 428 292" stroke="#c0392b" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+      <!-- 點數加購／直購 緊靠消費者左側 -->
+      <text x="478" y="308" text-anchor="middle" fill="#c0392b" font-size="9.5" font-family="Noto Sans TC">點數加購／直購</text>
+    </svg>
+
+    <div class="legend">
+      <div class="leg-item"><div class="leg-line" style="background:#1c3d5a;"></div>主要流通路徑</div>
+      <div class="leg-item"><div class="leg-line" style="background:#c0392b;"></div>品牌商品路徑</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 02 原始概念 ===== -->
+<div class="concept-stage" id="s02">
+  <div class="concept-inner">
+    <p class="sec-tag rv">02 — 原始概念</p>
+    <h2 class="sec-h rv">物料共用的初始發想</h2>
+    <p class="sec-sub rv">核心邏輯：同一套物料，同門市進價、同規格—在門市是早餐原料，對外就是品牌商品，降低另備物料的成本。</p>
+
+    <div class="path-legend rv">
+      <div class="pl-item" style="color:rgba(255,255,255,0.85);"><div class="pl-dot" style="background:#4a9eff;"></div>門市路徑</div>
+      <div class="pl-item" style="color:rgba(255,255,255,0.85);"><div class="pl-dot" style="background:#c0392b;"></div>品牌商品路徑</div>
+      <div class="pl-item" style="color:rgba(255,255,255,0.85);"><div class="pl-dot" style="background:#b8903a;"></div>消費者端</div>
+    </div>
+
+    <div class="concept-svg-wrap rv">
+      <svg viewBox="0 0 860 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <defs>
+          <marker id="cb" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6Z" fill="#4a9eff"/></marker>
+          <marker id="cr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6Z" fill="#c0392b"/></marker>
+          <marker id="cg" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,1 L6,3.5 L0,6Z" fill="#b8903a"/></marker>
+        </defs>
+
+        <!-- 總部物料 -->
+        <rect x="20" y="80" width="110" height="40" fill="#b8903a" rx="1"/>
+        <text x="75" y="98" text-anchor="middle" fill="#1a1208" font-size="11" font-family="Noto Sans TC" font-weight="700">總部</text>
+        <text x="75" y="113" text-anchor="middle" fill="#1a1208" font-size="10" font-family="Noto Sans TC">物料</text>
+
+        <!-- 中間連線 + 分岐 + 標註 -->
+        <line x1="130" y1="100" x2="210" y2="100" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
+        <!-- 分岐點 -->
+        <circle cx="210" cy="100" r="4" fill="rgba(255,255,255,0.5)"/>
+        <!-- 標註 -->
+        <text x="168" y="91" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="9" font-family="Noto Sans TC">同產品進價</text>
+        <text x="168" y="103" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="9" font-family="Noto Sans TC">及規格</text>
+
+        <!-- 上分支 → 門市早餐原料 (blue) -->
+        <path d="M210 100 Q210 55 310 55" stroke="#4a9eff" stroke-width="1.5" fill="none" marker-end="url(#cb)"/>
+        <rect x="310" y="36" width="140" height="38" fill="rgba(74,158,255,0.15)" stroke="#4a9eff" stroke-width="1" rx="1"/>
+        <text x="380" y="53" text-anchor="middle" fill="#7dc4ff" font-size="11" font-family="Noto Sans TC">門市</text>
+        <text x="380" y="68" text-anchor="middle" fill="#7dc4ff" font-size="10" font-family="Noto Sans TC">早餐原料</text>
+
+        <!-- 下分支 → 品牌商品 (red) -->
+        <path d="M210 100 Q210 145 310 145" stroke="#c0392b" stroke-width="1.5" fill="none" marker-end="url(#cr)"/>
+        <rect x="310" y="126" width="140" height="38" fill="rgba(192,57,43,0.2)" stroke="#c0392b" stroke-width="1" rx="1"/>
+        <text x="380" y="143" text-anchor="middle" fill="#f08070" font-size="11" font-family="Noto Sans TC">品牌商品</text>
+        <text x="380" y="158" text-anchor="middle" fill="rgba(240,128,112,0.7)" font-size="9" font-family="Noto Sans TC">對外銷售</text>
+
+        <!-- 門市 → 早餐成品 → 消費者 -->
+        <line x1="450" y1="55" x2="540" y2="55" stroke="#4a9eff" stroke-width="1.2" marker-end="url(#cb)"/>
+        <rect x="540" y="36" width="110" height="38" fill="rgba(74,158,255,0.1)" stroke="#4a9eff" stroke-width="0.8" rx="1"/>
+        <text x="595" y="60" text-anchor="middle" fill="#7dc4ff" font-size="10" font-family="Noto Sans TC">早餐成品</text>
+
+        <!-- 品牌商品 → 直接銷售 -->
+        <line x1="450" y1="145" x2="540" y2="145" stroke="#c0392b" stroke-width="1.2" marker-end="url(#cr)"/>
+        <rect x="540" y="126" width="110" height="38" fill="rgba(192,57,43,0.1)" stroke="#c0392b" stroke-width="0.8" rx="1"/>
+        <text x="595" y="149" text-anchor="middle" fill="#f08070" font-size="10" font-family="Noto Sans TC">直接銷售</text>
+
+        <!-- both → 消費者 -->
+        <path d="M650 55 Q720 55 720 100" stroke="#b8903a" stroke-width="1.3" fill="none" marker-end="url(#cg)"/>
+        <path d="M650 145 Q720 145 720 100" stroke="#b8903a" stroke-width="1.3" fill="none" marker-end="url(#cg)"/>
+        <rect x="720" y="78" width="110" height="44" fill="rgba(184,144,58,0.15)" stroke="#b8903a" stroke-width="1" rx="1"/>
+        <text x="775" y="97" text-anchor="middle" fill="#e8c060" font-size="11" font-family="Noto Sans TC" font-weight="600">消費者</text>
+        <text x="775" y="114" text-anchor="middle" fill="rgba(232,192,96,0.65)" font-size="8.5" font-family="Noto Sans TC">直購／點數加購</text>
+      </svg>
+    </div>
+
+    <!-- 限制 -->
+    <div class="limit-grid">
+      <div class="limit-card rv">
+        <div class="limit-num">01</div>
+        <div class="limit-title">作業流程壓力</div>
+        <div class="limit-body">共用庫存壓力小，與門市既有流程相同，惟要確認品項及規格是否需要調整，執行成本仍待評估。</div>
+      </div>
+      <div class="limit-card rv">
+        <div class="limit-num">02</div>
+        <div class="limit-title">消費者誘因有限</div>
+        <div class="limit-body">受限於品項本身的吸引力，對消費者而言僅是「多一個可買的品項」，難以形成強動機。</div>
+      </div>
+      <div class="limit-card rv">
+        <div class="limit-num">03</div>
+        <div class="limit-title">點數換購率偏低</div>
+        <div class="limit-body">以目前兌換點數比例評估，整體量體有限，難以支撐規模化。</div>
+        <div class="limit-stat">兌換率 約14%｜每月累積點數約58.4萬點</div>
+      </div>
+    </div>
+
+    <div class="conclusion-bar rv">
+      結論定調：此方案<strong>保留作為輔助</strong>，但在點數換購率低、消費者誘因不足的情況下，<strong>無法成為品牌商品的放大器</strong>—僅能作為「多一個會員可加購的商品選項」。
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== 03 擴大視角 ===== -->
+<section class="sec" id="s03">
+  <p class="sec-tag rv">03 — 擴大視角</p>
+  <h2 class="sec-h rv">品牌商品<br>必須是品牌代表</h2>
+  <p class="sec-sub rv">不只是內部流通的附加選項—品牌商品應該承載品牌識別，對外延伸到外部通路，甚至破圈帶來新消費者，形成正向成長循環。</p>
+
+  <div class="vision-wrap rv">
+    <!-- Before -->
+    <div>
+      <p class="vision-label">現有視角 · 品牌商品作為附加選項</p>
+      <div class="vision-diagram">
+        <p class="vtag" style="color:var(--muted);">BEFORE</p>
+        <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <defs>
+            <marker id="vba" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="#1c3d5a"/></marker>
+            <marker id="vbr" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="rgba(192,57,43,0.5)"/></marker>
+          </defs>
+          <rect x="115" y="12" width="90" height="32" fill="#1c3d5a" rx="1"/>
+          <text x="160" y="32" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC">總部</text>
+          <line x1="160" y1="44" x2="160" y2="76" stroke="#1c3d5a" stroke-width="1" marker-end="url(#vba)"/>
+          <!-- 門市 品牌商品 -->
+          <rect x="80" y="76" width="76" height="32" fill="#e8e2d4" stroke="rgba(26,18,8,0.15)" rx="1"/>
+          <text x="118" y="96" text-anchor="middle" fill="#1a1208" font-size="10" font-family="Noto Sans TC">門市</text>
+          <rect x="163" y="72" width="108" height="42" fill="rgba(192,57,43,0.1)" stroke="rgba(192,57,43,0.25)" rx="1"/>
+          <text x="217" y="89" text-anchor="middle" fill="#c0392b" font-size="10" font-family="Noto Sans TC">品牌商品</text>
+          <text x="217" y="104" text-anchor="middle" fill="rgba(192,57,43,0.65)" font-size="8.5" font-family="Noto Sans TC">（共用物料）</text>
+          <line x1="118" y1="108" x2="118" y2="148" stroke="#1c3d5a" stroke-width="1" marker-end="url(#vba)"/>
+          <line x1="217" y1="108" x2="217" y2="148" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3 2" marker-end="url(#vbr)"/>
+          <!-- 消費者 -->
+          <rect x="95" y="148" width="130" height="32" fill="#1c3d5a" rx="1"/>
+          <text x="160" y="168" text-anchor="middle" fill="white" font-size="11" font-family="Noto Sans TC">消費者（既有）</text>
+          <!-- 量體有限 -->
+          <rect x="55" y="200" width="210" height="26" fill="rgba(192,57,43,0.06)" stroke="rgba(192,57,43,0.2)" rx="1"/>
+          <text x="160" y="217" text-anchor="middle" fill="#c0392b" font-size="9.5" font-family="Noto Sans TC">量體有限，僅為附加選項</text>
+          <!-- 封閉圈 -->
+          <rect x="38" y="60" width="244" height="140" fill="none" stroke="rgba(26,18,8,0.08)" stroke-dasharray="4 3" rx="4"/>
+          <text x="48" y="74" fill="rgba(26,18,8,0.25)" font-size="8" font-family="Noto Sans TC">品牌內部循環</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- After -->
+    <div>
+      <p class="vision-label" style="color:var(--red);">擴大視角 · 品牌商品作為品牌代表</p>
+      <div class="vision-diagram" style="border-color:rgba(192,57,43,0.2);box-shadow:3px 3px 0 rgba(192,57,43,0.07);">
+        <p class="vtag" style="color:var(--red);">AFTER — 品牌商品＝品牌代表</p>
+        <svg viewBox="0 0 380 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <defs>
+            <marker id="vaa" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="#1c3d5a"/></marker>
+            <marker id="var" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="#c0392b"/></marker>
+            <marker id="vag" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="#b8903a"/></marker>
+          </defs>
+
+          <!-- ── 右上：破圈新消費者（上）、外部通路（下） ── -->
+          <rect x="232" y="14" width="130" height="28" fill="rgba(192,57,43,0.07)" stroke="rgba(192,57,43,0.4)" stroke-dasharray="3 2" rx="1"/>
+          <text x="297" y="32" text-anchor="middle" fill="#c0392b" font-size="9.5" font-family="Noto Sans TC">破圈新消費者</text>
+
+          <rect x="232" y="60" width="130" height="28" fill="rgba(192,57,43,0.07)" stroke="rgba(192,57,43,0.4)" stroke-dasharray="3 2" rx="1"/>
+          <text x="297" y="78" text-anchor="middle" fill="#c0392b" font-size="9.5" font-family="Noto Sans TC">外部通路</text>
+
+          <!-- ── 品牌加分迴路：破圈新消費者 → 總部（紅色大弧，頂部） ── -->
+          <path d="M232 26 Q148 -10 68 46" stroke="#c0392b" stroke-width="1.3" stroke-dasharray="5 3" fill="none" marker-end="url(#var)"/>
+          <text x="148" y="12" text-anchor="middle" fill="#c0392b" font-size="8.5" font-family="Noto Sans TC">品牌加分迴路</text>
+
+          <!-- ── 左欄：總部 → 門市 → 消費者 ── -->
+          <rect x="20" y="46" width="90" height="32" fill="#1c3d5a" rx="1"/>
+          <text x="65" y="67" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC">總部</text>
+
+          <line x1="65" y1="78" x2="65" y2="120" stroke="#1c3d5a" stroke-width="1.3" marker-end="url(#vaa)"/>
+
+          <rect x="20" y="120" width="90" height="32" fill="#e8e2d4" stroke="rgba(26,18,8,0.15)" rx="1"/>
+          <text x="65" y="141" text-anchor="middle" fill="#1a1208" font-size="12" font-family="Noto Sans TC">門市</text>
+
+          <line x1="65" y1="152" x2="65" y2="204" stroke="#1c3d5a" stroke-width="1.3" marker-end="url(#vaa)"/>
+
+          <rect x="20" y="204" width="90" height="32" fill="#1c3d5a" rx="1"/>
+          <text x="65" y="225" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC">消費者</text>
+
+          <!-- ── 右欄：品牌商品，與門市同高 ── -->
+          <rect x="148" y="114" width="132" height="44" fill="#c0392b" rx="1"/>
+          <text x="214" y="133" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC" font-weight="700">品牌商品</text>
+          <text x="214" y="149" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="9" font-family="Noto Sans TC">（具有品牌代表）</text>
+
+          <!-- 品牌商品 → 外部通路（虛線） -->
+          <path d="M252 114 Q268 92 278 90" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3" fill="none" marker-end="url(#var)"/>
+
+          <!-- 品牌商品 → 破圈新消費者（虛線，直接） -->
+          <path d="M238 114 Q254 64 248 44" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3" fill="none" marker-end="url(#var)"/>
+
+          <!-- 外部通路 → 破圈新消費者（向上箭頭） -->
+          <line x1="297" y1="60" x2="297" y2="44" stroke="#c0392b" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#var)"/>
+
+          <!-- 品牌商品 → 消費者（弧線 + 標註） -->
+          <path d="M214 158 Q185 192 112 214" stroke="#c0392b" stroke-width="1.5" fill="none" marker-end="url(#var)"/>
+          <text x="174" y="196" fill="#c0392b" font-size="8" font-family="Noto Sans TC">直購／點數加購</text>
+
+          <!-- ── 正向循環框（底部） ── -->
+          <rect x="14" y="256" width="280" height="30" fill="rgba(184,144,58,0.07)" stroke="rgba(184,144,58,0.35)" rx="1"/>
+          <text x="154" y="275" text-anchor="middle" fill="#b8903a" font-size="9" font-family="Noto Sans TC">正向循環 → 更多人認識品牌 → 進門市</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div class="insight-list">
+    <div class="insight-item rv">
+      <div class="insight-title"><div class="i-dot" style="background:var(--red);"></div>品牌商品必須是品牌代表，不是附加選項</div>
+      <div class="insight-body">消費者接觸品牌商品的那一刻，應該能感受到「這就是這個品牌」—它承載品牌識別，不是隨意附加的品項。</div>
+    </div>
+    <div class="insight-item rv">
+      <div class="insight-title"><div class="i-dot" style="background:var(--red);opacity:0.5;"></div>虛線代表假設目標：外部通路延伸 + 破圈新客</div>
+      <div class="insight-body">品牌商品若具備代表性，可透過外部通路觸及非既有消費者。破圈分兩條：外部通路帶來的新客、直接衝著品牌商品而來的新客—兩者最終都會進入門市，形成正向循環。</div>
+    </div>
+    <div class="insight-item rv">
+      <div class="insight-title"><div class="i-dot" style="background:var(--gold);"></div>品牌加分 → 正向飛輪</div>
+      <div class="insight-body">品牌商品帶來的品牌加分效果，讓更多人知道這個品牌，進而帶動門市消費，再加上既有點數加購機制，形成完整的正向循環。</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 04 案例 ===== -->
+<div class="cases-bg" id="s04">
+  <div class="cases-inner">
+    <p class="sec-tag rv">04 — 案例參考</p>
+    <h2 class="sec-h rv">他們的品牌商品<br>代表什麼？</h2>
+    <p class="sec-sub rv">看兩個台灣餐飲品牌如何透過品牌商品，讓消費者在門市之外仍能感受到品牌的存在與意涵。</p>
+
+    <div class="cases-grid">
+      <div class="case-card rv">
+        <div class="case-brand">石二鍋</div>
+        <div class="case-en">SHI ER GUO</div>
+        <div class="case-kw">平價火鍋的日常代表</div>
+        <div class="case-body">石二鍋的品牌商品延伸自「平價、親民、家常」的核心定位。推出湯底包、醬料等商品，讓消費者在家也能重現門市的熟悉味道。品牌商品扮演「日常延伸」的角色—讓品牌進入消費者廚房，強化黏著度。</div>
+      </div>
+      <div class="case-card rv">
+        <div class="case-brand">鼎泰豐</div>
+        <div class="case-en">DIN TAI FUNG</div>
+        <div class="case-kw">台灣精緻餐飲的名片</div>
+        <div class="case-body">鼎泰豐的品牌商品承載「台灣之光」的高度。伴手禮、冷凍小籠包不只是食物，而是遞給世界的一張名片。購買者不只在買商品，而是在表達對品牌代表意涵的認同—品牌商品是「品牌形象的實體化」。</div>
+      </div>
+      <div class="case-card rv" style="border-color:rgba(184,144,58,0.3);background:rgba(184,144,58,0.03);">
+        <div class="case-brand" style="color:var(--gold);">共同點</div>
+        <div class="case-en">WHAT THEY SHARE</div>
+        <div class="case-kw" style="border-color:rgba(184,144,58,0.4);color:var(--gold);">品牌商品 ≠ 多一個商品</div>
+        <div class="case-body" style="color:rgba(255,255,255,0.55);">他們的品牌商品都在回答同一個問題：<em style="color:rgba(255,255,255,0.75);font-style:normal;">「這個品牌是誰？」</em><br><br>商品本身是品牌定位的延伸，不是隨意附加的品項。消費者買的時候，同時在買一種認同感。</div>
+      </div>
+    </div>
+
+    <div class="reflection rv">
+      <div class="reflection-q">→ 那我們的品牌商品應該回答什麼問題？</div>
+      <div class="reflection-text">
+        我們是<strong>台灣早餐界的代表</strong>。<br>
+        我們的品牌商品，應該讓人一看就知道「這是台灣早餐文化的具體化」——<br>
+        它不只是好吃的東西，而是<strong>能代表這個品牌在台灣早餐這件事上的位置</strong>。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== 05 品牌商品發展方向 ===== -->
+<style>
+.dir-wrap{display:grid;grid-template-columns:200px 1fr;gap:0;align-items:stretch;border:1px solid rgba(26,18,8,0.08);margin-top:1.5rem;overflow:hidden;}
+.dir-left{display:flex;flex-direction:column;border-right:1px solid rgba(26,18,8,0.08);}
+.dir-origin{background:#c0392b;padding:1.5rem 1rem;text-align:center;display:flex;align-items:center;justify-content:center;min-height:60px;}
+.dir-origin-text{font-family:'Noto Serif TC',serif;font-size:1.1rem;font-weight:900;color:white;line-height:1.3;}
+.dir-branches{display:flex;flex-direction:column;flex:1;}
+.dir-branch-row{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid rgba(26,18,8,0.06);}
+.dir-branch-row:last-child{border-bottom:none;}
+.dir-branch-label{padding:1.25rem 1rem;display:flex;align-items:flex-start;border-right:1px solid rgba(26,18,8,0.06);cursor:pointer;transition:background 0.18s;user-select:none;gap:0.5rem;}
+.dir-branch-label:hover{background:rgba(26,18,8,0.03);}
+.dir-branch-label.active-a{background:rgba(28,61,90,0.06);}
+.dir-branch-label.active-bc{background:rgba(184,144,58,0.06);}
+.dir-branch-badge{font-size:0.65rem;letter-spacing:0.1em;padding:0.15rem 0.4rem;border-radius:1px;flex-shrink:0;margin-top:0.1rem;}
+.dir-branch-name{font-size:0.9rem;font-weight:700;line-height:1.3;}
+.dir-branch-sub{font-size:0.72rem;color:var(--muted);margin-top:0.15rem;}
+.dir-branch-chev{font-size:0.7rem;margin-top:0.15rem;transition:transform 0.2s;flex-shrink:0;}
+.dir-branch-chev.open{transform:rotate(90deg);}
+.dir-detail{display:none;padding:1.5rem 1.75rem;background:var(--white);}
+.dir-detail.open{display:block;}
+.dir-detail-target{font-size:0.85rem;font-weight:700;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(26,18,8,0.07);}
+.dir-logic-title{font-size:0.62rem;letter-spacing:0.15em;color:var(--muted);margin-bottom:0.5rem;}
+.dir-logic-list{padding-left:1.1rem;margin:0 0 1.5rem;}
+.dir-logic-list li{font-size:0.82rem;line-height:1.8;color:var(--ink);}
+.dir-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.dir-tag-a{font-size:0.78rem;padding:0.28rem 0.75rem;background:rgba(28,61,90,0.07);border:1px solid rgba(28,61,90,0.18);color:#1c3d5a;}
+.dir-tag-b{font-size:0.78rem;padding:0.28rem 0.75rem;background:rgba(184,144,58,0.08);border:1px solid rgba(184,144,58,0.25);color:#b8903a;}
+@media(max-width:600px){
+  .dir-wrap{grid-template-columns:1fr;}
+  .dir-branch-row{grid-template-columns:1fr;}
+  .dir-branch-label{border-right:none;border-bottom:1px solid rgba(26,18,8,0.06);}
+}
+</style>
+
+<section class="sec" id="s05">
+  <p class="sec-tag rv">05 — 發展方向</p>
+  <h2 class="sec-h rv">品牌商品<br>應該推出什麼？</h2>
+  <p class="sec-sub rv">從「台灣早餐界代表」的定位出發，品牌商品的品項需同時滿足：能代表品牌、讓消費者產生認同、具備傳播性。</p>
+
+  <div style="display:flex;justify-content:flex-end;margin-top:1rem;margin-bottom:-0.5rem;">
+    <button id="dir-toggle-all" onclick="toggleAllDirs()" style="font-size:0.72rem;color:var(--muted);background:none;border:1px solid rgba(26,18,8,0.12);padding:0.3rem 0.8rem;cursor:pointer;font-family:'Noto Sans TC',sans-serif;border-radius:2px;transition:all 0.18s;" onmouseover="this.style.borderColor='#1c3d5a';this.style.color='#1c3d5a'" onmouseout="this.style.borderColor='rgba(26,18,8,0.12)';this.style.color='var(--muted)'">全部展開</button>
+  </div>
+
+  <div class="dir-wrap rv">
+    <!-- 左側起點 -->
+    <div class="dir-left">
+      <div class="dir-origin" style="flex:1;">
+        <div class="dir-origin-text">品牌<br>商品</div>
+      </div>
+    </div>
+
+    <!-- 右側三個方向 -->
+    <div class="dir-branches">
+
+      <!-- 方向 A（預設展開） -->
+      <div class="dir-branch-row">
+        <div class="dir-branch-label active-a" id="lbl-A" onclick="toggleDir('A')">
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem;">
+              <span class="dir-branch-badge" style="background:#1c3d5a;color:white;">方向 A</span>
+              <span class="dir-branch-name" style="color:#1c3d5a;">代表品牌商品</span>
+            </div>
+            <div class="dir-branch-sub">成為台灣早餐界代表</div>
+          </div>
+          <span class="dir-branch-chev open" id="chev-A" style="color:#1c3d5a;">›</span>
+        </div>
+        <div class="dir-detail open" id="det-A">
+          <div class="dir-detail-target" style="color:#c0392b;">→ 成為台灣早餐界代表</div>
+          <div class="dir-logic-title">品項篩選邏輯</div>
+          <ol class="dir-logic-list">
+            <li>有早餐店／品牌代表性</li>
+            <li>門市有，消費者在門市吃過／體驗過</li>
+            <li>可延伸到其他「非早餐食用情境」</li>
+            <li>和店舖可或能部分共用物料</li>
+          </ol>
+          <div class="dir-logic-title">可能品項</div>
+          <div class="dir-tags">
+            <span class="dir-tag-a">鐵板麵</span><span class="dir-tag-a">鍋燒意麵</span><span class="dir-tag-a">炒意麵</span><span class="dir-tag-a">蛋餅</span><span class="dir-tag-a">蘿蔔糕</span><span class="dir-tag-a">玉米濃湯</span><span class="dir-tag-a">奶茶</span><span class="dir-tag-a">蛋沙拉</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 方向 B -->
+      <div class="dir-branch-row">
+        <div class="dir-branch-label" id="lbl-B" onclick="toggleDir('B')">
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem;">
+              <span class="dir-branch-badge" style="background:rgba(184,144,58,0.15);border:1px solid rgba(184,144,58,0.4);color:#b8903a;">方向 B</span>
+              <span class="dir-branch-name" style="color:#b8903a;">整合產品線</span>
+            </div>
+            <div class="dir-branch-sub">與門市共用物料 → 會員加購新選項</div>
+          </div>
+          <span class="dir-branch-chev" id="chev-B" style="color:#b8903a;font-size:0.72rem;white-space:nowrap;">展開 ›</span>
+        </div>
+        <div class="dir-detail" id="det-B">
+          <div class="dir-detail-target" style="color:#b8903a;">→ 作為會員加購的新選項</div>
+          <div class="dir-logic-title">品項篩選邏輯</div>
+          <ol class="dir-logic-list">
+            <li>既有規格可直接轉變為消費者商品</li>
+            <li>更改包材的成本幅度不大(計算整體毛利)</li>
+            <li>有品牌獨家性</li>
+          </ol>
+          <div class="dir-logic-title">可能品項</div>
+          <div class="dir-tags">
+            <span class="dir-tag-b">朝食吐司</span><span class="dir-tag-b">美蔬綠</span><span class="dir-tag-b">藍莓乳酪醬</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 方向 C -->
+      <div class="dir-branch-row">
+        <div class="dir-branch-label" id="lbl-C" onclick="toggleDir('C')">
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem;">
+              <span class="dir-branch-badge" style="background:rgba(184,144,58,0.1);border:1px solid rgba(184,144,58,0.3);color:#b8903a;">方向 C</span>
+              <span class="dir-branch-name" style="color:#b8903a;">節慶商品</span>
+            </div>
+            <div class="dir-branch-sub">創造話題與購買動機 · 限定感</div>
+          </div>
+          <span class="dir-branch-chev" id="chev-C" style="color:#b8903a;font-size:0.72rem;white-space:nowrap;">展開 ›</span>
+        </div>
+        <div class="dir-detail" id="det-C">
+          <div class="dir-detail-target" style="color:#b8903a;">→ 節慶限定 · 強化品牌識別</div>
+          <div class="dir-logic-title">品項方向</div>
+          <ol class="dir-logic-list">
+            <li>具節慶象徵性，適合送禮</li>
+            <li>包裝可強化品牌識別</li>
+            <li>限定感創造稀缺性</li>
+          </ol>
+          <div class="dir-logic-title">現有規劃</div>
+          <div class="dir-tags">
+            <span class="dir-tag-b">過年限定</span><span class="dir-tag-b">中秋禮盒</span><span class="dir-tag-b" style="opacity:0.5;border-style:dashed;">其他節慶（待規劃）</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== 06 各階段發展 ===== -->
+<style>
+.expand-btn{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.78rem;color:var(--muted);cursor:pointer;background:none;border:1px solid rgba(26,18,8,0.12);padding:0.3rem 0.65rem;border-radius:2px;transition:all 0.2s;margin-top:0.5rem;font-family:'Noto Sans TC',sans-serif;}
+.expand-btn:hover{border-color:var(--red);color:var(--red);}
+.expand-btn .chevron{display:inline-block;transition:transform 0.25s;font-size:0.65rem;}
+.expand-btn.open .chevron{transform:rotate(90deg);}
+.expand-panel{display:none;margin-top:0.75rem;border:1px solid rgba(26,18,8,0.1);background:var(--white);padding:1.25rem 1.5rem;}
+.expand-panel.open{display:block;}
+.mall-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.75rem;}
+.mall-item{padding:0.75rem 1rem;border:1px solid rgba(26,18,8,0.08);font-size:0.82rem;line-height:1.8;}
+.mall-item-title{font-weight:600;font-size:0.85rem;margin-bottom:0.3rem;color:var(--blue);}
+.mall-item-sub{font-size:0.78rem;color:var(--muted);}
+.member-bar{margin-top:1rem;padding:0.75rem 1rem;background:rgba(184,144,58,0.07);border-left:2px solid var(--gold);font-size:0.8rem;color:var(--muted);line-height:1.8;}
+.member-bar strong{color:var(--gold);}
+.stage-table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.stage-table th,.stage-table td{border:1px solid rgba(26,18,8,0.08);padding:0;vertical-align:top;}
+.stage-table th{background:#1c3d5a;color:white;font-size:0.78rem;font-weight:500;padding:0.6rem 1rem;letter-spacing:0.05em;}
+.stage-table th.col-stage{width:100px;background:#1c3d5a;}
+.stage-label{padding:1.25rem 0.75rem;text-align:center;}
+.stage-num{font-family:'Noto Serif TC',serif;font-weight:900;font-size:1.4rem;color:#1c3d5a;line-height:1;}
+.stage-name{font-size:0.7rem;color:var(--muted);margin-top:0.3rem;}
+.stage-num.muted{color:var(--muted);}
+.cell{padding:1rem 1.25rem;}
+.cell-item{padding:0.5rem 0.75rem;border:1px solid rgba(26,18,8,0.1);margin-bottom:0.5rem;font-size:0.82rem;line-height:1.7;background:var(--white);position:relative;}
+.cell-item.red{border-color:rgba(192,57,43,0.25);background:rgba(192,57,43,0.03);}
+.cell-item.blue{border-color:rgba(28,61,90,0.2);background:rgba(28,61,90,0.03);}
+.cell-item.muted-item{border-color:rgba(122,112,96,0.2);background:rgba(122,112,96,0.02);color:var(--muted);}
+.cell-item-title{font-weight:600;color:var(--ink);font-size:0.83rem;}
+.cell-item-sub{font-size:0.75rem;color:var(--muted);margin-top:0.15rem;}
+.parallel-tag{display:inline-block;font-size:0.62rem;letter-spacing:0.1em;color:var(--gold);border:1px solid rgba(184,144,58,0.4);padding:0.1rem 0.4rem;margin-bottom:0.5rem;}
+.system-note{margin-top:0.5rem;padding:0.4rem 0.65rem;background:rgba(26,18,8,0.03);border-left:2px solid rgba(26,18,8,0.12);font-size:0.75rem;color:var(--muted);}
+.eval-row td{background:rgba(122,112,96,0.02);}
+.eval-span{padding:1rem 1.25rem;}
+.eval-inner{border:1px dashed rgba(122,112,96,0.35);padding:0.75rem 1rem;}
+.eval-tag{font-size:0.62rem;letter-spacing:0.12em;color:var(--muted);margin-bottom:0.75rem;}
+.eval-items{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.eval-item{padding:0.6rem 0.8rem;border:1px dashed rgba(122,112,96,0.25);font-size:0.8rem;color:var(--muted);}
+.eval-item-title{font-size:0.82rem;color:var(--muted);font-weight:600;margin-bottom:0.2rem;}
+</style>
+
+<section class="sec" id="s06">
+  <p class="sec-tag rv">06 — 各階段發展</p>
+  <h2 class="sec-h rv">從現在到未來<br>三個推進階段</h2>
+  <p class="sec-sub rv">以門市端與外部通路端並行推進，品牌代表商品在兩個通路同步上線，僅組裝端不同。</p>
+
+  <div class="rv" style="overflow-x:auto;">
+  <table class="stage-table" style="min-width:600px;">
+    <thead>
+      <tr>
+        <th class="col-stage">階段</th>
+        <th>門市<div style="font-size:0.8rem;font-weight:400;opacity:0.65;margin-top:0.15rem;letter-spacing:0.05em;">養會員 · 養自有流量</div></th>
+        <th>外部通路<div style="font-size:0.8rem;font-weight:400;opacity:0.65;margin-top:0.15rem;letter-spacing:0.05em;">對外曝光 + 銷售管道</div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 階段 ① -->
+      <tr>
+        <td>
+          <div class="stage-label">
+            <div class="stage-num">①</div>
+            <div class="stage-name">前期啟動</div>
+          </div>
+        </td>
+        <td>
+          <div class="cell">
+            <div class="system-note">以既有你訂系統接單，降低系統建置成本</div>
+            <div style="height:0.6rem;"></div>
+            <!-- 整合產品線 -->
+            <div class="cell-item blue">
+              <div class="cell-item-title">整合產品線</div>
+              <div class="cell-item-sub">增加會員換購品項 · 共用物料及規格</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.4rem;">
+                <span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:rgba(28,61,90,0.08);border:1px solid rgba(28,61,90,0.15);color:#1c3d5a;">美蔬綠</span>
+                <span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:rgba(28,61,90,0.08);border:1px solid rgba(28,61,90,0.15);color:#1c3d5a;">朝食吐司</span>
+              </div>
+            </div>
+            <!-- 品牌代表商品 -->
+            <div class="cell-item red" style="border-left:2px solid var(--red);">
+              <div class="parallel-tag">↔ 與外部通路並行</div>
+              <div class="cell-item-title">品牌代表商品</div>
+              <div class="cell-item-sub">門市端組裝出貨</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.4rem;">
+                <span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.2);color:var(--red);">鐵板麵組合</span>
+                <span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.2);color:var(--red);">炒意麵組合</span>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="cell">
+            <div class="system-note">向外拓至團購通路<br>目的：進行市場驗證</div>
+            <div style="height:0.6rem;"></div>
+            <!-- 整合產品線 對齊用空白 -->
+            <div style="height:4.8rem;"></div>
+            <!-- 品牌代表商品（平行，與左欄對齊） -->
+            <div class="cell-item red" style="border-left:2px solid var(--red);">
+              <div class="parallel-tag">↔ 與門市並行</div>
+              <div class="cell-item-title">品牌代表商品</div>
+              <div class="cell-item-sub">總部端組裝出貨</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.4rem;">
+                <span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.2);color:var(--red);">鐵板麵組合</span>
+                <span style="font-size:0.72rem;padding:0.15rem 0.5rem;background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.2);color:var(--red);">炒意麵組合</span>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- 階段 ② -->
+      <tr>
+        <td>
+          <div class="stage-label">
+            <div class="stage-num">②</div>
+            <div class="stage-name">擴展驗證</div>
+          </div>
+        </td>
+        <td>
+          <div class="cell">
+            <div class="cell-item muted-item">
+              <div class="cell-item-title">維持現況</div>
+              <div class="cell-item-sub">持續增加「會員換購品項」</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="cell">
+            <div class="cell-item" style="border-color:rgba(184,144,58,0.3);background:rgba(184,144,58,0.04);">
+              <div class="cell-item-title" style="color:var(--gold);">擴增團購通路 or KOL</div>
+            </div>
+            <div class="cell-item" style="border-color:rgba(184,144,58,0.3);background:rgba(184,144,58,0.04);">
+              <div class="cell-item-title" style="color:var(--gold);">增加新品項 Test</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <!-- 階段③ -->
+      <tr class="eval-row">
+        <td>
+          <div class="stage-label">
+            <div class="stage-num muted">③</div>
+            <div class="stage-name">評估規模化</div>
+          </div>
+        </td>
+        <td colspan="2">
+          <div class="eval-span">
+            <div class="eval-inner">
+              <div class="eval-tag">評估中 · 尚未決定</div>
+              <div class="eval-items">
+                <!-- 品牌商城 -->
+                <div class="eval-item">
+                  <div class="eval-item-title">評估是否建置「品牌商城」</div>
+                  <button class="expand-btn" onclick="toggleMall(this)" style="margin-top:0.4rem;"><span class="chevron">›</span> 展開商城架構</button>
+                </div>
+                <!-- 外部KA通路 -->
+                <div class="eval-item">
+                  <div class="eval-item-title">評估是否走到外部 KA 通路</div>
+                  <div class="mall-item-sub" style="margin-top:0.4rem;">線上：momo、蝦皮<br>實體：PX、CVS、Costco</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 全寬商城展開面板 -->
+<div id="mall-panel" style="display:none;background:#1a2d3d;padding:3rem 0;margin:0 calc(-1 * var(--side,2rem));overflow:hidden;">
+  <div style="max-width:900px;margin:0 auto;padding:0 2.5rem;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;">
+      <div>
+        <div style="font-size:0.6rem;letter-spacing:0.25em;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">階段③ · 展開說明</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:1.5rem;font-weight:900;color:white;line-height:1.2;">品牌商城 Model</div>
+        <div style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin-top:0.4rem;">品牌商品為核心 · 雙軌物流出口 · 串聯現行會員系統</div>
+      </div>
+      <button onclick="closeMall()" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.55);padding:0.45rem 1rem;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:0.8rem;border-radius:2px;flex-shrink:0;margin-left:1rem;">收起 ✕</button>
+    </div>
+    <svg viewBox="0 0 820 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <marker id="mwa" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="white"/></marker>
+        <marker id="mwau" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto-start-reverse"><path d="M0,0.5 L5,3 L0,5.5Z" fill="#b8903a"/></marker>
+        <marker id="mwg" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="#b8903a"/></marker>
+        <marker id="mwm" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0.5 L5,3 L0,5.5Z" fill="rgba(255,255,255,0.3)"/></marker>
+      </defs>
+
+      <!-- 品牌商城 -->
+      <rect x="10" y="50" width="140" height="48" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" rx="1"/>
+      <text x="80" y="70" text-anchor="middle" fill="white" font-size="13" font-family="Noto Sans TC" font-weight="700">品牌商城</text>
+      <text x="80" y="87" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9.5" font-family="Noto Sans TC">Brand Mall</text>
+
+      <!-- 雙向箭頭：品牌商城 ↕ 串聯現行會員系統 -->
+      <line x1="80" y1="98" x2="80" y2="138" stroke="#b8903a" stroke-width="1.3" stroke-dasharray="3 2"/>
+      <!-- 下箭頭 -->
+      <polygon points="75,138 85,138 80,146" fill="#b8903a"/>
+      <!-- 上箭頭 -->
+      <polygon points="75,98 85,98 80,90" fill="#b8903a"/>
+
+      <!-- 串聯現行會員系統 -->
+      <rect x="10" y="146" width="140" height="52" fill="rgba(184,144,58,0.15)" stroke="rgba(184,144,58,0.45)" rx="1"/>
+      <text x="80" y="166" text-anchor="middle" fill="#b8903a" font-size="10" font-family="Noto Sans TC" font-weight="600">串聯現行會員系統</text>
+      <text x="80" y="182" text-anchor="middle" fill="rgba(184,144,58,0.7)" font-size="8.5" font-family="Noto Sans TC">Line-id 識別</text>
+      <text x="80" y="194" text-anchor="middle" fill="rgba(184,144,58,0.7)" font-size="8.5" font-family="Noto Sans TC">點數線上換購</text>
+
+      <!-- 品牌商城 → 品牌商品 -->
+      <line x1="150" y1="74" x2="238" y2="74" stroke="white" stroke-width="1.5" marker-end="url(#mwa)"/>
+
+      <!-- 品牌商城 → 外部商品 虛線 -->
+      <path d="M120 98 Q120 230 200 230" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4 3" fill="none" marker-end="url(#mwm)"/>
+      <rect x="200" y="216" width="130" height="28" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-dasharray="3 2" rx="1"/>
+      <text x="265" y="234" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="9" font-family="Noto Sans TC">外部商品（選配）</text>
+
+      <!-- 品牌商品 -->
+      <rect x="238" y="50" width="150" height="48" fill="#c0392b" rx="1"/>
+      <text x="313" y="70" text-anchor="middle" fill="white" font-size="13" font-family="Noto Sans TC" font-weight="700">品牌商品</text>
+      <text x="313" y="87" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="9.5" font-family="Noto Sans TC">核心商品</text>
+
+      <!-- → 宅配 -->
+      <path d="M388 62 Q445 62 445 36" stroke="white" stroke-width="1.4" fill="none" marker-end="url(#mwa)"/>
+      <!-- → 門市取貨 -->
+      <path d="M388 86 Q445 86 445 122" stroke="white" stroke-width="1.4" fill="none" marker-end="url(#mwa)"/>
+
+      <!-- 宅配 -->
+      <rect x="445" y="10" width="185" height="52" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" rx="1"/>
+      <text x="537" y="32" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC" font-weight="700">宅配</text>
+      <text x="537" y="48" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="Noto Sans TC">→ 總部庫存出貨 · 揀貨出貨</text>
+
+      <!-- 門市取貨不付款 -->
+      <rect x="445" y="108" width="185" height="52" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" rx="1"/>
+      <text x="537" y="130" text-anchor="middle" fill="white" font-size="12" font-family="Noto Sans TC" font-weight="700">門市取貨不付款</text>
+      <text x="537" y="148" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="Noto Sans TC">消費者至門市取貨 · 帶動客流</text>
+    </svg>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== 07 門市毛利結構 · 點數效益 ===== -->
+<style>
+/* 毛利表格 */
+.gp-table-wrap{overflow-x:auto;margin-top:1.5rem;}
+.gp-table{width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Noto Sans TC',sans-serif;min-width:780px;}
+.gp-table th,.gp-table td{border:1px solid rgba(26,18,8,0.1);padding:0.45rem 0.65rem;text-align:center;vertical-align:middle;line-height:1.5;}
+.gp-table thead th{font-weight:600;font-size:0.72rem;letter-spacing:0.04em;}
+.th-group{background:#1c3d5a;color:white;}
+.th-buy{background:#4e86c0;color:white;}
+.th-pts{background:#b8903a;color:white;}
+.th-note{background:rgba(26,18,8,0.06);color:var(--muted);}
+.td-dir{background:rgba(26,18,8,0.03);color:var(--muted);font-size:0.72rem;writing-mode:horizontal-tb;font-weight:600;}
+.td-item{text-align:left;color:var(--ink);}
+.td-sub{font-size:0.72rem;color:var(--muted);text-align:left;padding-left:1.5rem;}
+.td-buy{background:rgba(78,134,192,0.05);}
+.td-pts{background:rgba(184,144,58,0.05);}
+.td-hi{color:#c0392b;font-weight:600;}
+.gp-table tr:hover td{background:rgba(26,18,8,0.02);}
+/* 效益卡片 */
+.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;}
+.benefit-card{border:1px solid rgba(26,18,8,0.08);padding:1.25rem 1.5rem;background:var(--white);}
+.benefit-num{font-family:'Noto Serif TC',serif;font-size:1.6rem;font-weight:900;line-height:1.1;margin-bottom:0.25rem;}
+.benefit-label{font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;}
+.benefit-sub{font-size:0.75rem;color:var(--muted);margin-top:0.4rem;line-height:1.6;}
+/* 兌換表 */
+.redeem-table{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:0.75rem;}
+.redeem-table th{background:rgba(184,144,58,0.12);color:#b8903a;font-size:0.72rem;letter-spacing:0.06em;padding:0.5rem 0.75rem;border:1px solid rgba(184,144,58,0.2);font-weight:600;}
+.redeem-table td{padding:0.45rem 0.75rem;border:1px solid rgba(26,18,8,0.07);color:var(--ink);text-align:center;}
+.redeem-table td:first-child{text-align:left;}
+/* 推算流程 */
+.calc-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:0;align-items:center;margin-top:1.25rem;}
+.calc-box{border:1px solid rgba(26,18,8,0.1);padding:0.9rem 1rem;text-align:center;background:var(--white);}
+.calc-num{font-family:'Noto Serif TC',serif;font-size:1.15rem;font-weight:900;color:#1c3d5a;line-height:1.1;}
+.calc-label{font-size:0.68rem;color:var(--muted);margin-top:0.2rem;line-height:1.4;}
+.calc-arrow{text-align:center;font-size:1rem;color:var(--muted);padding:0 0.25rem;}
+/* 正向循環 */
+.cycle-bar{display:flex;align-items:center;justify-content:center;gap:0;margin-top:1.5rem;flex-wrap:wrap;}
+.cycle-node{padding:0.5rem 1.1rem;font-size:0.8rem;font-weight:600;color:white;background:#1c3d5a;}
+.cycle-arr{font-size:0.85rem;color:#b8903a;padding:0 0.35rem;}
+@media(max-width:680px){.benefit-grid{grid-template-columns:1fr 1fr;}.calc-flow{grid-template-columns:1fr;}.calc-arrow{transform:rotate(90deg);}}
+</style>
+
+<section class="sec" id="s07">
+  <p class="sec-tag rv">07 — 門市毛利結構 · 點數效益</p>
+  <h2 class="sec-h rv">品牌商品毛利試算<br>與點數加購效益預估</h2>
+  <p class="sec-sub rv">以現有門市成本為基礎，試算直購與點數加購兩種情境下的毛利結構；並推算若點數兌換率由 14% 提升至 50% 的預估效益。</p>
+
+  <!-- ① 毛利結構表格 -->
+  <h3 class="rv" style="font-size:0.75rem;letter-spacing:0.15em;color:var(--muted);margin:2rem 0 0;">品項毛利結構試算</h3>
+  <div class="gp-table-wrap rv">
+    <table class="gp-table">
+      <thead>
+        <tr>
+          <th class="th-group" rowspan="2">品牌商品方向</th>
+          <th class="th-group" rowspan="2">品項</th>
+          <th class="th-group" rowspan="2">規格 (g)</th>
+          <th class="th-group" rowspan="2">門市成本<br>(含稅)</th>
+          <th class="th-buy" colspan="3">直購</th>
+          <th class="th-pts" colspan="5">點 + 金　1點 = $0.25</th>
+          <th class="th-note" rowspan="2">備註</th>
+        </tr>
+        <tr>
+          <th class="th-buy">門市毛利率</th>
+          <th class="th-buy">毛利額</th>
+          <th class="th-buy">直購RSP</th>
+          <th class="th-pts">門市毛利率<br>(&gt;25%)</th>
+          <th class="th-pts">毛利額</th>
+          <th class="th-pts">點數加購($金)</th>
+          <th class="th-pts">點數加購(P點)</th>
+          <th class="th-pts">點數折扣率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- B. 整合產品線 -->
+        <tr>
+          <td class="td-dir" rowspan="6">B. 整合產品線<br>— 會員加購新選項</td>
+          <td colspan="12" style="background:rgba(26,18,8,0.05);font-weight:700;color:var(--ink);font-size:0.8rem;padding:0.45rem 0.65rem;text-align:left;">美蔬綠</td>
+        </tr>
+        <tr>
+          <td class="td-sub">既有規格</td>
+          <td>500</td><td>293</td>
+          <td class="td-buy">37%</td><td class="td-buy">172</td><td class="td-buy td-hi">465</td>
+          <td class="td-pts">27%</td><td class="td-pts">107</td><td class="td-pts td-hi">400</td><td class="td-pts">250</td><td class="td-pts">86%</td>
+          <td style="font-size:0.72rem;color:var(--muted);">costco生菜平均克單價=$0.93 / 綜合生菜350g $285 / 貝比生菜200g $235 / 奶油波士頓萵苣200g $179 </td>
+        </tr>
+        <tr>
+          <td class="td-sub">共用新規格</td>
+          <td>350</td><td>210.1</td>
+          <td class="td-buy">35%</td><td class="td-buy">115</td><td class="td-buy td-hi">325</td>
+          <td class="td-pts">27%</td><td class="td-pts">78</td><td class="td-pts td-hi">288</td><td class="td-pts">150</td><td class="td-pts">89%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="12" style="background:rgba(26,18,8,0.05);font-weight:700;color:var(--ink);font-size:0.8rem;padding:0.45rem 0.65rem;text-align:left;">朝食吐司</td>
+        </tr>
+        <tr>
+          <td class="td-sub">朝食厚片</td>
+          <td>6片/包</td><td>74.55</td>
+          <td class="td-buy">42%</td><td class="td-buy">54</td><td class="td-buy td-hi">129</td>
+          <td class="td-pts">25%</td><td class="td-pts">24</td><td class="td-pts td-hi">99</td><td class="td-pts">100</td><td class="td-pts">77%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="td-sub">朝食吐司</td>
+          <td>8片/包</td><td>68.25</td>
+          <td class="td-buy">47%</td><td class="td-buy">61</td><td class="td-buy td-hi">129</td>
+          <td class="td-pts">31%</td><td class="td-pts">31</td><td class="td-pts td-hi">99</td><td class="td-pts">100</td><td class="td-pts">77%</td>
+          <td></td>
+        </tr>
+        <!-- A. 品牌商品 -->
+        <tr>
+          <td class="td-dir" rowspan="6">A. 品牌商品</td>
+          <td colspan="12" style="background:rgba(26,18,8,0.05);font-weight:700;color:var(--ink);font-size:0.8rem;padding:0.45rem 0.65rem;text-align:left;">鐵板麵 + 醬料</td>
+        </tr>
+        <tr>
+          <td class="td-sub">油麵＋醬</td>
+          <td>單入</td><td>26.275</td>
+          <td class="td-buy">47%</td><td class="td-buy">24</td><td class="td-buy td-hi">50</td>
+          <td class="td-pts">31%</td><td class="td-pts">12</td><td class="td-pts td-hi">38</td><td class="td-pts">50</td><td class="td-pts">76%</td>
+          <td style="font-size:0.72rem;color:var(--muted);">Cf. PX鐵板麵 $36、愛麵族 $43-49</td>
+        </tr>
+        <tr>
+          <td class="td-sub">油麵＋醬</td>
+          <td>五入</td><td>91.375</td>
+          <td class="td-buy">63%</td><td class="td-buy">159</td><td class="td-buy td-hi">250</td>
+          <td class="td-pts">39%</td><td class="td-pts">59</td><td class="td-pts td-hi">150</td><td class="td-pts">400</td><td class="td-pts">60%</td>
+          <td style="font-size:0.72rem;color:var(--muted);">換算單入 $30</td>
+        </tr>
+        <tr>
+          <td colspan="12" style="background:rgba(26,18,8,0.05);font-weight:700;color:var(--ink);font-size:0.8rem;padding:0.45rem 0.65rem;text-align:left;">炒意麵 + 醬料</td>
+        </tr>
+        <tr>
+          <td class="td-sub">意麵＋醬</td>
+          <td>單入</td><td>28.228</td>
+          <td class="td-buy">44%</td><td class="td-buy">22</td><td class="td-buy td-hi">50</td>
+          <td class="td-pts">26%</td><td class="td-pts">10</td><td class="td-pts td-hi">38</td><td class="td-pts">50</td><td class="td-pts">76%</td>
+        </tr>
+        <tr>
+          <td class="td-sub">意麵＋醬</td>
+          <td>五入</td><td>101.14</td>
+          <td class="td-buy">60%</td><td class="td-buy">149</td><td class="td-buy td-hi">250</td>
+          <td class="td-pts">33%</td><td class="td-pts">49</td><td class="td-pts td-hi">150</td><td class="td-pts">400</td><td class="td-pts">60%</td>
+          <td style="font-size:0.72rem;color:var(--muted);">換算單入 $30</td>
+          <td></td>
+        </tr>
+        <!-- 平均列 -->
+        <tr style="background:rgba(184,144,58,0.06);border-top:2px solid rgba(184,144,58,0.3);">
+          <td colspan="2" style="font-weight:700;color:var(--ink);font-size:0.8rem;text-align:left;padding:0.55rem 0.65rem;">各品項平均</td>
+          <td colspan="2" style="color:var(--muted);font-size:0.72rem;text-align:center;">—</td>
+          <td colspan="3" style="text-align:center;color:var(--muted);font-size:0.72rem;">—</td>
+          <td colspan="4" style="text-align:center;color:var(--muted);font-size:0.72rem;">—</td>
+          <td style="font-weight:700;color:#b8903a;font-size:0.88rem;text-align:center;">avg. 75%</td>
+          <td style="font-size:0.7rem;color:#b8903a;text-align:left;padding-left:0.5rem;">→ 點數折抵約佔售價 <strong>25%</strong>，用於下方營收推算</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="rv" style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">* 所有商品在點數折抵後仍維持門市毛利 ≥ 25%</p>
+
+  <!-- ② 現況說明 -->
+  <div class="rv" style="margin-top:2.5rem;padding:1.25rem 1.5rem;border-left:2px solid var(--gold);background:rgba(184,144,58,0.04);">
+    <div style="font-size:0.65rem;letter-spacing:0.15em;color:#b8903a;margin-bottom:0.5rem;">會員點數機制現況</div>
+    <div style="font-size:0.85rem;color:var(--ink);line-height:1.9;">
+      目前會員點數每月產生約 <strong>58 萬點</strong>，現行兌換率約 <strong>14%</strong>，每點兌換價值為 <strong>$0.25</strong>。<br>
+      透過新增「品牌商品 + 點數加購」的品項，預期可提升會員點數使用率，並提高會員回店與消費動機。
+    </div>
+  </div>
+
+  <!-- ④ 推算流程 -->
+  <h3 class="rv" style="font-size:0.75rem;letter-spacing:0.15em;color:var(--muted);margin:2rem 0 0;">兌換率提升推算（14% → 50%）</h3>
+  <div class="calc-flow rv">
+    <div class="calc-box">
+      <div class="calc-num">580,000</div>
+      <div class="calc-label">每月產生點數</div>
+    </div>
+    <div class="calc-arrow">×50%</div>
+    <div class="calc-box">
+      <div class="calc-num">290,000</div>
+      <div class="calc-label">月兌換點數</div>
+    </div>
+    <div class="calc-arrow">×$0.25</div>
+    <div class="calc-box">
+      <div class="calc-num">$72,500</div>
+      <div class="calc-label">點數折抵金額</div>
+    </div>
+    <div class="calc-arrow">÷25%</div>
+    <div class="calc-box" style="border-color:rgba(28,61,90,0.3);background:rgba(28,61,90,0.04);">
+      <div class="calc-num" style="color:#1c3d5a;">$290,000</div>
+      <div class="calc-label">會員兌換商品營收／月</div>
+    </div>
+  </div>
+
+  <!-- ⑤ 效益數據卡片 -->
+  <h3 class="rv" style="font-size:0.75rem;letter-spacing:0.15em;color:var(--muted);margin:2rem 0 0;">整體效益預估</h3>
+  <div class="benefit-grid rv">
+    <div class="benefit-card">
+      <div class="benefit-num" style="color:#1c3d5a;">$390,000</div>
+      <div class="benefit-label">每月新增營收</div>
+      <div class="benefit-sub">
+        商品營收 $290,000<br>
+        + 帶動消費 $101,500<br>
+        <span style="color:rgba(26,18,8,0.35);font-size:0.7rem;">← $72,500（折抵金額）× 1.4 倍帶動消費乘數<br>（會員兌換時通常到店會順道購買早餐）</span>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-num" style="color:#b8903a;">$90,000–<br>$110,000</div>
+      <div class="benefit-label">每月新增毛利</div>
+      <div class="benefit-sub">
+        $390,000 × 25%（平均毛利率）≈ $97,500<br>
+        <span style="color:rgba(26,18,8,0.35);font-size:0.7rem;">各品項毛利率介於 25–39%，以保守 25% 估算區間為 $90,000–$110,000</span>
+      </div>
+    </div>
+    <div class="benefit-card" style="border-color:rgba(192,57,43,0.2);background:rgba(192,57,43,0.02);">
+      <div class="benefit-num" style="color:#c0392b;">$4.7M / $1.1M</div>
+      <div class="benefit-label">年度新增營收 / 毛利</div>
+      <div class="benefit-sub">
+        $390,000 × 12 ≈ $4.7M（營收）<br>
+        $97,500 × 12 ≈ $1.1M（毛利）
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ 增量試算 -->
+  <div class="rv" style="margin-top:2rem;border:1px solid rgba(26,18,8,0.1);background:rgba(26,18,8,0.015);">
+    <div style="padding:1rem 1.5rem;border-bottom:1px solid rgba(26,18,8,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+      <div>
+        <span style="font-size:0.65rem;letter-spacing:0.15em;color:var(--muted);">增量試算</span>
+        <span style="font-size:0.72rem;color:var(--muted);margin-left:0.75rem;">僅計算新增的 36% 兌換點數（14% → 50%）</span>
+      </div>
+      <button onclick="togglePanel(this)" style="font-size:0.7rem;color:var(--muted);background:none;border:1px solid rgba(26,18,8,0.1);padding:0.25rem 0.7rem;cursor:pointer;font-family:'Noto Sans TC',sans-serif;border-radius:2px;">
+        <span class="chevron">›</span> 查看計算步驟
+      </button>
+      <div class="expand-panel" style="width:100%;margin-top:0;border:none;padding:0.75rem 0 0;background:transparent;">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--ink);line-height:2;">
+          <span style="background:var(--white);border:1px solid rgba(26,18,8,0.1);padding:0.3rem 0.65rem;">580,000 點／月</span>
+          <span style="color:var(--muted);">×（50% − 14%）＝</span>
+          <span style="background:var(--white);border:1px solid rgba(26,18,8,0.1);padding:0.3rem 0.65rem;">208,800 新增點數</span>
+          <span style="color:var(--muted);">× $0.25 ＝</span>
+          <span style="background:var(--white);border:1px solid rgba(26,18,8,0.1);padding:0.3rem 0.65rem;">$52,200 折抵金額</span>
+          <span style="color:var(--muted);">÷ 25% ＝</span>
+          <span style="background:rgba(28,61,90,0.06);border:1px solid rgba(28,61,90,0.2);padding:0.3rem 0.65rem;color:#1c3d5a;font-weight:600;">$208,800 兌換商品營收</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--ink);margin-top:0.5rem;line-height:2;">
+          <span style="color:var(--muted);">帶動消費：$52,200 × 1.4 倍 ＝</span>
+          <span style="background:var(--white);border:1px solid rgba(26,18,8,0.1);padding:0.3rem 0.65rem;">$73,000</span>
+          <span style="font-size:0.72rem;color:rgba(26,18,8,0.3);">會員兌換時通常到店會順道購買早餐</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+      <div style="padding:1.1rem 1.25rem;border-right:1px solid rgba(26,18,8,0.07);">
+        <div style="font-family:'Noto Serif TC',serif;font-size:1.2rem;font-weight:900;color:#1c3d5a;">$208,800</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:0.25rem;">新增兌換商品營收／月</div>
+      </div>
+      <div style="padding:1.1rem 1.25rem;border-right:1px solid rgba(26,18,8,0.07);">
+        <div style="font-family:'Noto Serif TC',serif;font-size:1.2rem;font-weight:900;color:#1c3d5a;">$73,000</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:0.25rem;">新增帶動消費／月</div>
+      </div>
+      <div style="padding:1.1rem 1.25rem;border-right:1px solid rgba(26,18,8,0.07);background:rgba(28,61,90,0.03);">
+        <div style="font-family:'Noto Serif TC',serif;font-size:1.2rem;font-weight:900;color:#1c3d5a;">≈ $280,000</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:0.25rem;">新增總營收／月</div>
+        <div style="font-size:0.7rem;color:rgba(26,18,8,0.3);margin-top:0.15rem;">$208,800 + $73,000</div>
+      </div>
+      <div style="padding:1.1rem 1.25rem;background:rgba(184,144,58,0.04);">
+        <div style="font-family:'Noto Serif TC',serif;font-size:1.2rem;font-weight:900;color:#b8903a;">≈ $70,000</div>
+        <div style="font-size:0.68rem;color:var(--muted);margin-top:0.25rem;">新增毛利／月</div>
+        <div style="font-size:0.7rem;color:rgba(26,18,8,0.3);margin-top:0.15rem;">$280,000 × 25%</div>
+      </div>
+    </div>
+    <div style="padding:0.65rem 1.5rem;border-top:1px solid rgba(26,18,8,0.06);background:rgba(26,18,8,0.02);display:flex;gap:2rem;flex-wrap:wrap;">
+      <span style="font-size:0.75rem;color:var(--muted);">年度新增營收：<strong style="color:var(--ink);">≈ $3.3M</strong></span>
+      <span style="font-size:0.75rem;color:var(--muted);">年度新增毛利：<strong style="color:#b8903a;">≈ $0.85M</strong></span>
+      <span style="font-size:0.7rem;color:rgba(26,18,8,0.3);">（以上為增量部分，不含現有兌換基礎）</span>
+    </div>
+  </div>
+
+  <!-- ⑥ 正向循環 -->
+  <div class="rv" style="margin-top:2rem;padding:1.5rem;border:1px solid rgba(26,18,8,0.08);">
+    <div style="font-size:0.65rem;letter-spacing:0.15em;color:var(--muted);margin-bottom:1rem;">正向循環</div>
+    <div class="cycle-bar">
+      <div class="cycle-node">點數使用</div>
+      <div class="cycle-arr">→</div>
+      <div class="cycle-node">回店消費</div>
+      <div class="cycle-arr">→</div>
+      <div class="cycle-node">品牌商品曝光</div>
+      <div class="cycle-arr">→</div>
+      <div class="cycle-node">再次消費</div>
+      <div class="cycle-arr" style="color:rgba(184,144,58,0.4);">↺</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="divider"></div>
+
+<!-- ===== 08 風險評估 · 結論 ===== -->
+<style>
+.risk-table{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:1.25rem;}
+.risk-table th{padding:0.55rem 1rem;font-size:0.72rem;letter-spacing:0.08em;font-weight:600;text-align:left;border:1px solid rgba(26,18,8,0.1);}
+.risk-table td{padding:0.65rem 1rem;border:1px solid rgba(26,18,8,0.08);vertical-align:top;line-height:1.75;}
+.risk-th-scenario{background:#1c3d5a;color:white;width:22%;}
+.risk-th-in{background:rgba(28,61,90,0.08);color:#1c3d5a;width:39%;}
+.risk-th-out{background:rgba(184,144,58,0.1);color:#b8903a;width:39%;}
+.risk-row-good td{background:rgba(28,61,90,0.03);}
+.risk-row-mid td{background:rgba(184,144,58,0.03);}
+.risk-row-low td{background:rgba(122,112,96,0.03);}
+.risk-scenario{font-weight:600;font-size:0.78rem;}
+.risk-good{color:#2e7d52;}
+.risk-warn{color:#b8903a;}
+.risk-muted{color:var(--muted);}
+.conclusion-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
+.conclusion-col{border:1px solid rgba(26,18,8,0.1);padding:1.5rem;}
+.conclusion-col-label{font-size:0.6rem;letter-spacing:0.2em;margin-bottom:0.4rem;}
+.conclusion-col-title{font-family:'Noto Serif TC',serif;font-size:1.05rem;font-weight:900;margin-bottom:0.75rem;}
+.conclusion-col-body{font-size:0.82rem;color:var(--muted);line-height:1.85;}
+.conclusion-final{margin-top:1.5rem;padding:1.25rem 1.5rem;border-left:3px solid #1c3d5a;background:rgba(28,61,90,0.04);font-size:0.85rem;line-height:1.9;color:var(--ink);}
+.worst-best{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;}
+.wb-box{padding:1rem 1.25rem;border:1px solid rgba(26,18,8,0.08);}
+.wb-label{font-size:0.62rem;letter-spacing:0.15em;margin-bottom:0.4rem;}
+.wb-body{font-size:0.82rem;line-height:1.75;}
+@media(max-width:600px){.conclusion-grid,.worst-best{grid-template-columns:1fr;}}
+</style>
+
+<section class="sec" id="s08">
+  <p class="sec-tag rv">08 — 風險評估 · 結論</p>
+  <h2 class="sec-h rv">最差情況<br>風險可承擔仍有其價值存在</h2>
+  <p class="sec-sub rv">本案轉換成本低—即便外部通路驗證結果不如預期、品牌商品未能破圈，整合產品線作為會員加購選項的價值仍然獨立存在。</p>
+
+  <!-- 情境矩陣 -->
+  <div class="rv" style="overflow-x:auto;">
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th class="risk-th-scenario">情境</th>
+          <th class="risk-th-in">內部（整合產品線）</th>
+          <th class="risk-th-out">外部（品牌代表商品）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="risk-row-good">
+          <td><div class="risk-scenario risk-good">✓ 順利推展</div></td>
+          <td class="risk-good">提升點數兌換率、強化會員黏著度</td>
+          <td class="risk-good">品牌曝光擴大、新客進入門市</td>
+        </tr>
+        <tr class="risk-row-mid">
+          <td><div class="risk-scenario risk-warn">△ 外部未起色</div></td>
+          <td class="risk-good">仍有效，不受外部影響</td>
+          <td class="risk-warn">停止擴展，損失僅為測試成本</td>
+        </tr>
+        <tr class="risk-row-low">
+          <td><div class="risk-scenario risk-muted">— 會員使用率低</div></td>
+          <td class="risk-muted">多一個選項，不減損現有機制</td>
+          <td class="risk-muted">獨立評估，不連動內部結果</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 最壞／最好情況 -->
+  <div class="worst-best rv">
+    <div class="wb-box" style="border-color:rgba(122,112,96,0.2);background:rgba(122,112,96,0.02);">
+      <div class="wb-label" style="color:var(--muted);">最壞情況</div>
+      <div class="wb-body" style="color:var(--muted);">多了幾個會員可以換的商品；現有機制完整保留，無額外備料成本。</div>
+    </div>
+    <div class="wb-box" style="border-color:rgba(28,61,90,0.2);background:rgba(28,61,90,0.03);">
+      <div class="wb-label" style="color:#1c3d5a;">最好情況</div>
+      <div class="wb-body" style="color:#1c3d5a;">建立品牌商品的對外通路與長期曝光，點數使用率提升，形成品牌正向循環。</div>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="height:2.5rem;border-bottom:1px solid rgba(26,18,8,0.07);margin-top:2.5rem;"></div>
+  <h3 class="rv" style="font-size:0.75rem;letter-spacing:0.2em;color:var(--muted);margin:2rem 0 0;">建議</h3>
+  <p class="rv" style="font-size:0.88rem;font-weight:600;color:var(--ink);margin:0.5rem 0 0;">建議以雙軌方式同步啟動</p>
+
+  <!-- 雙軌說明 -->
+  <div class="conclusion-grid rv">
+    <div class="conclusion-col" style="border-color:rgba(28,61,90,0.2);background:rgba(28,61,90,0.02);">
+      <div class="conclusion-col-label" style="color:#1c3d5a;">內部先行</div>
+      <div class="conclusion-col-title" style="color:#1c3d5a;">共用物料 → 會員加購</div>
+      <div class="conclusion-col-body">以共用物料商品擴充會員點數兌換與門市加購的選項，<strong>利用現有系統與物料</strong>，推行壓力較低，鎖定品項及包材成本可負擔後即可執行。</div>
+    </div>
+    <div class="conclusion-col" style="border-color:rgba(184,144,58,0.3);background:rgba(184,144,58,0.02);">
+      <div class="conclusion-col-label" style="color:#b8903a;">外部並行</div>
+      <div class="conclusion-col-title" style="color:#b8903a;">品牌代表商品 → 市場驗證</div>
+      <div class="conclusion-col-body">同步透過團購等外部通路測試品牌代表商品的市場反應，<strong>以小規模驗證取代大規模投入</strong>，風險可控。</div>
+    </div>
+  </div>
+
+  <!-- 總結語 -->
+  <div class="conclusion-final rv">
+    兩軌互不依賴、風險獨立。內部方案無論外部結果如何都成立；外部驗證若有成效，則逐步建立品牌商品的長期發展基礎。<br><br>
+    <span style="color:var(--muted);font-size:0.8rem;">共用物料商品可作為會員點數兌換與門市加購的延伸選項，但品牌商品的長期發展仍需透過外部通路進行市場驗證與品牌曝光。</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="ft-note">早美品牌商品提案 · 內部文件 · 2026.03.16</div>
+  <div class="ft-status"><div class="ft-dot"></div>持續更新中</div>
+</footer>
+
+<script>
+/* ── 方向展開 ── */
+function toggleDir(dir) {
+  const det = document.getElementById('det-' + dir);
+  const chev = document.getElementById('chev-' + dir);
+  const lbl = document.getElementById('lbl-' + dir);
+  const isOpen = det.classList.contains('open');
+  // close all first
+  ['A','B','C'].forEach(d => {
+    document.getElementById('det-' + d).classList.remove('open');
+    document.getElementById('chev-' + d).classList.remove('open');
+    document.getElementById('lbl-' + d).classList.remove('active-a','active-bc');
+    // restore expand hint for B and C
+    if (d !== 'A') document.getElementById('chev-' + d).textContent = '展開 ›';
+  });
+  if (!isOpen) {
+    det.classList.add('open');
+    chev.classList.add('open');
+    lbl.classList.add(dir === 'A' ? 'active-a' : 'active-bc');
+    if (dir !== 'A') chev.textContent = '收合 ‹';
+  }
+  // sync toggle-all button text
+  syncToggleAllBtn();
+}
+
+function toggleAllDirs() {
+  const allOpen = ['A','B','C'].every(d => document.getElementById('det-' + d).classList.contains('open'));
+  ['A','B','C'].forEach(d => {
+    const det = document.getElementById('det-' + d);
+    const chev = document.getElementById('chev-' + d);
+    const lbl = document.getElementById('lbl-' + d);
+    if (allOpen) {
+      // collapse all except A
+      if (d === 'A') { det.classList.add('open'); chev.classList.add('open'); lbl.classList.add('active-a'); }
+      else { det.classList.remove('open'); chev.classList.remove('open'); lbl.classList.remove('active-bc'); chev.textContent = '展開 ›'; }
+    } else {
+      det.classList.add('open');
+      chev.classList.add('open');
+      lbl.classList.add(d === 'A' ? 'active-a' : 'active-bc');
+      if (d !== 'A') chev.textContent = '收合 ‹';
+    }
+  });
+  syncToggleAllBtn();
+}
+
+function syncToggleAllBtn() {
+  const allOpen = ['A','B','C'].every(d => document.getElementById('det-' + d).classList.contains('open'));
+  const btn = document.getElementById('dir-toggle-all');
+  if (btn) btn.textContent = allOpen ? '全部收合' : '全部展開';
+}
+
+/* ── 品牌商城全寬展開 ── */
+let mallBtn = null;
+function toggleMall(btn) {
+  const panel = document.getElementById('mall-panel');
+  const isOpen = panel.style.display !== 'none';
+  if (isOpen) {
+    panel.style.display = 'none';
+    btn.classList.remove('open');
+    mallBtn = null;
+  } else {
+    panel.style.display = 'block';
+    btn.classList.add('open');
+    mallBtn = btn;
+    setTimeout(()=>{ panel.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
+  }
+}
+function closeMall() {
+  const panel = document.getElementById('mall-panel');
+  panel.style.display = 'none';
+  if (mallBtn) { mallBtn.classList.remove('open'); mallBtn = null; }
+}
+
+/* ── expand panels (階段表格內) ── */
+function togglePanel(btn){
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+/* ── scroll reveal ── */
+const rvEls = document.querySelectorAll('.rv');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*60);obs.unobserve(e.target);} });
+},{threshold:0.07});
+rvEls.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
